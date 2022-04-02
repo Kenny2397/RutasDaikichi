@@ -1,5 +1,6 @@
 package com.codingdojo.kenny.Controllers;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +26,24 @@ public class ControladorUsuarios {
 	}
 	
 	//el required = false permite que cuando se llega a ../search muestra Haz buscado: null, si esta en true no despliega nada
-    @RequestMapping("/search")
+    
+	@RequestMapping("/search")
     public String index(@RequestParam(value="q", required=true) String searchQuery) {
         return "Haz buscado: " + searchQuery;
     }
-//...
+	
+	@RequestMapping(value = "/travel/{destino}", method = RequestMethod.GET)
+	public String travel(@PathVariable("destino") String destino) {
+		return "Congratulations! You will soon travel to "+ destino+"!";
+	}
+	
+	@RequestMapping(value="/lotto/{int}", method = RequestMethod.GET)
+	public String lotto(@PathVariable("int") int entero) {
+		if(entero%2 == 0) {
+			return "Harás un gran viaje en un futuro cercano, pero ten cuidado con las ofertas tentadoras";
+		}else {
+			return "Has disfrutado de los frutos de tu trabajo, pero ahora es un buen momento para pasar tiempo con familiares y amigos";
+		}
+	}
+
 }
