@@ -27,7 +27,7 @@ public class ControladorUsuarios {
 	
 	//el required = false permite que cuando se llega a ../search muestra Haz buscado: null, si esta en true no despliega nada
     
-	@RequestMapping("/search")
+	@RequestMapping(value = "/search", method=RequestMethod.GET)
     public String index(@RequestParam(value="q", required=true) String searchQuery) {
         return "Haz buscado: " + searchQuery;
     }
